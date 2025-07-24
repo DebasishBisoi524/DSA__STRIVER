@@ -13,6 +13,7 @@ public class Main {
         int[] arr6 = { 0, 1, 0, 1, 2, 2, 1, 0, 1, 2, 0 };
         int[] arr7 = { 2, 3, 5, -8, 7, -4 };
         int[] arr8 = { 1, 1, 5 };
+        int[] arr9 = { 1, 2, 4, 8, 16, 32, 64 };
         int[][] mat = {
                 { 1, 2, 3 },
                 { 4, 5, 6 },
@@ -31,6 +32,7 @@ public class Main {
         pr.sortZeroOneTwo(arr6);
         pr.maxSubArray(arr7);
         pr.nextPermutation(arr8);
+        pr.findDoublePairs(arr9);
     }
 }
 
@@ -406,11 +408,12 @@ class Problems {
         for (int num : arr) {
             System.out.print(num + " ");
         }
+        System.out.println();
         return;
 
     }
 
-    private void reverse(int[] arr, int i, int j) { 
+    private void reverse(int[] arr, int i, int j) {
         while (i < j) {
             int temp = arr[i];
             arr[i] = arr[j];
@@ -418,5 +421,25 @@ class Problems {
             i++;
             j--;
         }
+    }
+
+    public List<List<Integer>> findDoublePairs(int[] arr) {
+        Arrays.sort(arr);
+        Set<Integer> set = new HashSet<>();
+        List<List<Integer>> temp = new ArrayList<>();
+        for (int num : arr) {
+            set.add(num);
+        }
+
+        for (int num : arr) {
+            if (set.contains(num * 2)) {
+                List<Integer> temp1 = new ArrayList<>();
+                temp1.add(num);
+                temp1.add(num * 2);
+                temp.add(temp1);
+            }
+        }
+        System.out.println("The Pairs are: " + temp);
+        return temp;
     }
 }
